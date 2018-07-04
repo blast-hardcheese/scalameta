@@ -192,7 +192,7 @@ object TreeSyntax {
 
           // TODO: the `this` check is actually here to correctly prettyprint primary ctor calls in secondary ctors
           // this is purely an implementation artifact and will be fixed once we have tokens
-          t.value != "this" && (keywords.contains(t.value) || !validPlainid(t.value))
+          t.value != "this" && (keywords.contains(t.value) || t.value.contains("//") || t.value.contains("/*") || t.value.contains("*/") || !validPlainid(t.value))
         }
         def isAmbiguousWithPatVarTerm(t: Term.Name, p: Tree): Boolean = {
           // TODO: the `eq` trick is very unreliable, but I can't come up with anything better at the moment
